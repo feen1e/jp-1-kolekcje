@@ -1,11 +1,22 @@
 package pl.feen1e;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main
 {
-    public final static String MENU = "";
+    public final static String AUTHOR = "Autor: Dominik Kaczmarek 281007";
+    public final static String MENU = """
+            *---------------------------------------*
+                Lista 1. Kolekcje - Menu:
+            1 - Zadanie 4. HashSet
+            2 - Zadanie 7. ArrayList
+            3 - Zadanie 8. HashMap
+            0 - Zakończenie działania programu
+            *---------------------------------------*
+            Proszę wprowadzić numer wybranej opcji:\s""";
+    public final static String ADDING_FINISHED = "Dodawanie zakończone.%n";
 
 
     public static void main(String[] args)
@@ -14,7 +25,7 @@ public class Main
     }
 
 
-    private static void ex4_hashSet(int method)
+    private static void ex4_hashSet(String method)
     {
         /*
          * Zaimplementuj klasę reprezentującą użytkownika z polami takimi jak:
@@ -24,7 +35,7 @@ public class Main
          */
         var users = new HashSet<User>();
 
-        if (method == 2)
+        if (Objects.equals(method, "2"))
         {
             System.out.println("Dodawanie manualne.");
             int numberOfUsers = 0;
@@ -56,11 +67,12 @@ public class Main
         }
         else
         {
+            System.out.println("Dodawanie automatyczne.");
             Object[][] user_examples = new Object[][]{
                     {"johnsm1th", "john.smith@example.com", 1},
                     {"j4n3d0e", "jane.doe@example.com", 2},
-                    {"al1ce__", "alice.wonder@example.com", 1},
-                    {"b0bu1lds", "bob.builder@example.com", 4}};
+                    {"al1ce__", "alice.wonder@example.com", 3},
+                    {"b0bu1lds", "bob.builder@example.com", 1}};
 
             for (Object[] user_example : user_examples)
             {
@@ -68,7 +80,9 @@ public class Main
                 u.print();
                 users.add(u);
             }
+            System.out.println("Proszę zwrócić uwagę na to, że użytkownik 4 ma taki sam numer ID jak użytkownik 1.");
         }
+        System.out.println(ADDING_FINISHED);
 
 
 
