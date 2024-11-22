@@ -1,4 +1,4 @@
-﻿package pl.feen1e;
+package pl.feen1e;
 
 import java.util.Scanner;
 
