@@ -1,5 +1,6 @@
 package pl.feen1e;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Scanner;
@@ -8,7 +9,7 @@ public class Main
 {
     public final static String AUTHOR = "Autor: Dominik Kaczmarek 281007";
     public final static String MENU = """
-           
+            
             *----------------- Lista 1. Kolekcje - Menu ----------------*
             1 - Zadanie 4. HashSet
             2 - Zadanie 7. ArrayList
@@ -28,11 +29,17 @@ public class Main
     public final static String EXERCISE_4 = """
             
             Zadanie polegało na implementacji klasy reprezentującej użytkownika, z polami takimi jak
-            nazwa użytkownika, adres e-mail, numer ID. Należało nadpisać metody hashSet() i equals(),
-            aby porównywały użytkowników na podstawie numeru ID. Następnie należało stworzyć hashSet
+            nazwa użytkownika, adres e-mail, numer ID. Należało nadpisać metody hashCode() i equals(),
+            aby porównywały użytkowników na podstawie numeru ID. Następnie należało stworzyć HashSet
             i dodać kilku użytkowników z takimi samymi oraz różnymi numerami ID i przeanalizować wynik.
             """;
     public final static String EXERCISE_7 = """
+            
+            Zadanie polegało na implementacji klasy reprezentującej produkt, z polami takimi jak
+            nazwa i cena. Należało zaimplementować interfejs Comparable, aby porównywać produkty
+            na podstawie nazwy. Następnie należało stworzyć listę produktów i posortować je za
+            pomocą Collection.sort(). Kolejnym krokiem było użycia własnego komparatora do sortowania
+            produktów według ich ceny oraz wyświetlenie i porównanie wyników.
             """;
     public final static String EXERCISE_8 = """
             """;
@@ -71,30 +78,19 @@ public class Main
                         case 1:
                         {
                             System.out.println(EXERCISE_4);
-                            int adding_method = -1;
-                            System.out.println(CHOOSE_ADDING_METHOD);
-                            while (adding_method == -1)
-                            {
-                                try
-                                {
-                                    adding_method = Integer.parseInt(scanner.nextLine());
-                                }
-                                catch (NumberFormatException e)
-                                {
-                                    System.out.println(NON_NUMBER_INPUT);
-                                }
-                            }
-                            ex4_hashSet(String.valueOf(adding_method));
+                            ex4HashSet(String.valueOf(chooseAddingMethod(scanner)));
                             break;
                         }
                         case 2:
                         {
-
+                            System.out.println(EXERCISE_7);
+                            ex7_arrayList(String.valueOf(chooseAddingMethod(scanner)));
                             break;
                         }
                         case 3:
                         {
-
+                            System.out.println(EXERCISE_8);
+                            ex8_hashMap(String.valueOf(chooseAddingMethod(scanner)));
                             break;
                         }
                         case 0:
@@ -119,7 +115,25 @@ public class Main
         }
     }
 
-    private static void ex4_hashSet(String method)
+    private static int chooseAddingMethod(Scanner scanner)
+    {
+        System.out.println(CHOOSE_ADDING_METHOD);
+        int adding_method = -1;
+        while (adding_method == -1)
+        {
+            try
+            {
+                adding_method = Integer.parseInt(scanner.nextLine());
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println(NON_NUMBER_INPUT);
+            }
+        }
+        return adding_method;
+    }
+
+    private static void ex4HashSet(String method)
     {
         /*
          * Zaimplementuj klasę reprezentującą użytkownika z polami takimi jak:
@@ -186,7 +200,76 @@ public class Main
                 W przypadku dodania dwóch użytkowników o takim samym numerze ID, ten drugi nie jest dodawany,
                 ponieważ zmodyfikowane metody .hashCode() i .equals() w klasie User sprawdzają tylko numery ID.
                 Ze względu na to, metoda .add() pomija drugiego użytkownika z takim samym numerem ID, gdyż
-                zgodnie z wynikiem metody .equals() są oni tacy sami, a hashSet nie dopuszcza duplikatów.""");
+                zgodnie z wynikiem metody .equals() są oni tacy sami, a HashSet nie dopuszcza duplikatów.""");
     }
 
+    private static void ex7_arrayList(String method)
+    {
+        /*
+        Stwórz klasę reprezentującą produkt z polami, takimi jak nazwa i cena.
+        Zaimplementuj interfejs Comparable, aby produkty były porównywane na podstawie nazwy.
+        Stwórz listę produktów i posortuj ją za pomocą Collections.sort(). Następnie wyświetl posortowaną listę.
+        Zmodyfikuj zadanie, aby tym razem użyć własnego komparatora do sortowania produktów według ceny.
+        Wyświetl wynik i porównaj go z poprzednim.
+         */
+
+        ArrayList<Product> products = new ArrayList<>();
+
+        if (Objects.equals(method, "2"))
+        {
+            System.out.println(MANUAL_ADD);
+            int numberOfProducts = 0;
+            while (numberOfProducts == 0)
+            {
+                try
+                {
+                    var scanner = new Scanner(System.in);
+                    System.out.print("Podaj liczbę produktów do wpisania: ");
+                    numberOfProducts = Integer.max(Integer.parseInt(scanner.nextLine()), 0);
+                }
+                catch (NumberFormatException e)
+                {
+                    System.out.println("Błąd: Liczba produktów musi być liczbą całkowitą większą od 0.");
+                }
+            }
+            for (int i = 0; i < numberOfProducts; i++)
+            {
+                Product p = Product.createProductFromInput();
+                if (p != null)
+                {
+                    products.add(p);
+                }
+                else
+                {
+                    i -= 1;
+                }
+            }
+        }
+        else
+        {
+            System.out.println(AUTO_ADD);
+            Object[][] product_examples = new Object[][]{
+                    {1, "Milk", 3.99},
+                    {2, "Mandarin 1kg", 7.99},
+                    {3, "Bread", 4.59}};
+
+            for (Object[] product_example : product_examples)
+            {
+                Product p = new Product((int) product_example[0], (String) product_example[1], (double) product_example[2]);
+                p.print();
+                products.add(p);
+            }
+        }
+        System.out.println(ADDING_FINISHED);
+        System.out.println(COLLECTION_ITEMS);
+        for (Product p : products)
+        {
+            p.print();
+        }
+    }
+
+    private static void ex8_hashMap(String method)
+    {
+
+    }
 }
