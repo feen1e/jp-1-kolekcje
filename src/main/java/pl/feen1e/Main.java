@@ -6,8 +6,9 @@ import java.util.Scanner;
 
 public class Main
 {
-    public final static String AUTHOR = "Autor: Dominik Kaczmarek 281007\n\n";
+    public final static String AUTHOR = "Autor: Dominik Kaczmarek 281007";
     public final static String MENU = """
+           
             *----------------- Lista 1. Kolekcje - Menu ----------------*
             1 - Zadanie 4. HashSet
             2 - Zadanie 7. ArrayList
@@ -24,8 +25,23 @@ public class Main
             (Wymaga ręcznego wprowadzenia każdego elementu kolekcji)
             *-----------------------------------------------------------*
             Proszę wprowadzić numer wybranej opcji:\s""";
+    public final static String EXERCISE_4 = """
+            
+            Zadanie polegało na implementacji klasy reprezentującej użytkownika, z polami takimi jak
+            nazwa użytkownika, adres e-mail, numer ID. Należało nadpisać metody hashSet() i equals(),
+            aby porównywały użytkowników na podstawie numeru ID. Następnie należało stworzyć hashSet
+            i dodać kilku użytkowników z takimi samymi oraz różnymi numerami ID i przeanalizować wynik.
+            """;
+    public final static String EXERCISE_7 = """
+            """;
+    public final static String EXERCISE_8 = """
+            """;
     public final static String ADDING_FINISHED = "Dodawanie zakończone.\n";
+    public final static String AUTO_ADD = "Dodawanie automatyczne.\n";
+    public final static String MANUAL_ADD = "Dodawanie manualne.\n";
     public final static String NON_NUMBER_INPUT = "Błąd: Podano znak niebędący liczbą.\nProszę wprowadzić numer wybranej opcji: ";
+    private static final String COLLECTION_ITEMS = "Oto kolejne elementy znajdujące się w kolekcji:\n";
+    private static final String EXIT = "Program zakończył działanie";
 
 
     public static void main(String[] args)
@@ -54,6 +70,7 @@ public class Main
                     {
                         case 1:
                         {
+                            System.out.println(EXERCISE_4);
                             int adding_method = -1;
                             System.out.println(CHOOSE_ADDING_METHOD);
                             while (adding_method == -1)
@@ -83,6 +100,7 @@ public class Main
                         case 0:
                         {
                             running = false;
+                            System.out.println(EXIT);
                             break;
                         }
                         default:
@@ -113,7 +131,7 @@ public class Main
 
         if (Objects.equals(method, "2"))
         {
-            System.out.println("Dodawanie manualne.");
+            System.out.println(MANUAL_ADD);
             int numberOfUsers = 0;
             while (numberOfUsers == 0)
             {
@@ -143,7 +161,7 @@ public class Main
         }
         else
         {
-            System.out.println("Dodawanie automatyczne.");
+            System.out.println(AUTO_ADD);
             Object[][] user_examples = new Object[][]{
                     {"johnsm1th", "john.smith@example.com", 1},
                     {"j4n3d0e", "jane.doe@example.com", 2},
@@ -159,8 +177,16 @@ public class Main
             System.out.println("Proszę zwrócić uwagę na to, że użytkownik 4 ma taki sam numer ID jak użytkownik 1.");
         }
         System.out.println(ADDING_FINISHED);
-
-
+        System.out.println(COLLECTION_ITEMS);
+        for (User u : users)
+        {
+            u.print();
+        }
+        System.out.println("""
+                W przypadku dodania dwóch użytkowników o takim samym numerze ID, ten drugi nie jest dodawany,
+                ponieważ zmodyfikowane metody .hashCode() i .equals() w klasie User sprawdzają tylko numery ID.
+                Ze względu na to, metoda .add() pomija drugiego użytkownika z takim samym numerem ID, gdyż
+                zgodnie z wynikiem metody .equals() są oni tacy sami, a hashSet nie dopuszcza duplikatów.""");
     }
 
 }
