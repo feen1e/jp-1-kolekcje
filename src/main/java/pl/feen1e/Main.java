@@ -1,9 +1,6 @@
 package pl.feen1e;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main
 {
@@ -249,23 +246,45 @@ public class Main
         {
             System.out.println(AUTO_ADD);
             Object[][] product_examples = new Object[][]{
-                    {1, "Milk", 3.99},
-                    {2, "Mandarin 1kg", 7.99},
-                    {3, "Bread", 4.59}};
+                    {"Milk", 4.99},
+                    {"Mandarin 1kg", 7.99},
+                    {"Bread", 4.59},
+                    {"Cookies", 3.99},
+                    {"Milk", 3.99}};
 
             for (Object[] product_example : product_examples)
             {
-                Product p = new Product((int) product_example[0], (String) product_example[1], (double) product_example[2]);
+                Product p = new Product((String) product_example[0], (double) product_example[1]);
                 p.print();
                 products.add(p);
             }
         }
         System.out.println(ADDING_FINISHED);
+        Collections.sort(products);
+        System.out.println("Produkty zostały posortowane alfabetycznie.");
         System.out.println(COLLECTION_ITEMS);
         for (Product p : products)
         {
             p.print();
         }
+        Collections.sort(products, Comparator.comparingDouble(Product::getPrice).thenComparing(Product::getName));
+        System.out.println("Następnie posortowano je według ceny (oraz nazwy, gdy produkty mają taką samą cenę), " +
+                "używając własnego komparatora.");
+        System.out.println(COLLECTION_ITEMS);
+        for (Product p : products)
+        {
+            p.print();
+        }
+
+        System.out.println("""
+                Sortowanie bez użycia własnego komparatora, czyli Collections.sort(products) wymaga
+                zaimplementowania w klasie porównywanych obiektów interfejsu Comparable i zdefiniowaniu
+                metody .compareTo(), używanej podczas sortowania. Warto użyć tego podejścia jeśli
+                istnieje zdefiniowany jednoznaczny porządek sortowania (np. alfabetycznie, po ID)
+                często używany w aplikacji. Użycie różnych komparatorów jest jednak lepsze, gdy
+                potrzeba różnych porządków sortownia w zależności od kontekstu (np. raz po nazwie,
+                innym razem po cenie lub ID). Pozwalają też one na oddzielenie logiki sortowania od
+                klasy, dzięki czemu mają one mniejszą złożoność.""");
     }
 
     private static void ex8_hashMap(String method)
