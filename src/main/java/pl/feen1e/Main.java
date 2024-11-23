@@ -39,6 +39,8 @@ public class Main
             produktów według ich ceny oraz wyświetlenie i porównanie wyników.
             """;
     public final static String EXERCISE_8 = """
+            
+            Zadanie polegało na ...
             """;
     public final static String ADDING_FINISHED = "Dodawanie zakończone.\n";
     public final static String AUTO_ADD = "Dodawanie automatyczne.\n";
@@ -138,7 +140,7 @@ public class Main
          * Napisz metody equals() i hashCode(), aby porównywały użytkowników na podstawie numeru ID.
          * Stwórz hashset i dodaj kilku użytkowników o tym samym numerze ID oraz kilku różnych. Przeanalizuj wynik.
          */
-        var users = new HashSet<User>();
+        HashSet<User> users = new HashSet<>();
 
         if (Objects.equals(method, "2"))
         {
@@ -289,6 +291,11 @@ public class Main
 
     private static void ex8_hashMap(String method)
     {
-
+        /*
+         * Stwórz mapę, w której kluczami są niestandardowe obiekty reprezentujące daty.
+         * Nadpisz metody equals() i hashCode() tych obiektów, aby zapewnić poprawne porównywanie.
+         * Dodaj kilka elementów do mapy i przetestuj, czy możesz znaleźć elementy za pomocą tych niestandardowych kluczy.
+         */
+        HashMap<Date, String> events = new HashMap<>();
     }
 }
