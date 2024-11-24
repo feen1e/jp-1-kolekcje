@@ -60,6 +60,29 @@ public class Date
         return null;
     }
 
+    public static Date createDate(String date)
+    {
+        try
+        {
+            if (!isValidDate(date))
+            {
+                System.out.println("Podano nieprawidłową datę.");
+                return null;
+            }
+            String[] dateArray = date.split("\\.");
+            return new Date(Integer.parseInt(dateArray[0]), Integer.parseInt(dateArray[1]), Integer.parseInt(dateArray[2]));
+        }
+        catch (PatternSyntaxException | ArrayIndexOutOfBoundsException | NumberFormatException e)
+        {
+            System.out.print("Podano datę w nieprawidłowym formacie. ");
+        }
+        catch (NullPointerException e)
+        {
+            System.out.print("Nie podano daty. ");
+        }
+        return null;
+    }
+
     public static String createEvent()
     {
         try

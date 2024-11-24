@@ -56,10 +56,10 @@ public class Exercise8
         {
             System.out.println(AUTO_ADD);
             Object[][] event_examples = new Object[][]{
-                    {10, 10, 2005, "Parents got married"},
-                    {20, 20, 2021, "Visited Greece"},
-                    {20, 20, 2021, "Visited Iceland"},
-                    {11, 9, 2025, "Concert"}};
+                    {10, 10, 2005, "Adopted a cat"},
+                    {20, 10, 2021, "Visited Greece"},
+                    {20, 10, 2021, "Visited Iceland"},
+                    {11, 9, 2025, "A concert"}};
 
             for (Object[] event_example : event_examples)
             {
@@ -78,6 +78,46 @@ public class Exercise8
             System.out.println(events.get(key));
         }
 
+        if (Objects.equals(method, "2"))
+        {
+            String input;
+            while (true)
+            {
+                try
+                {
+                    Scanner scanner = new Scanner(System.in);
+
+                    System.out.println("\nPodaj datę do wyszukania w formacie DD.MM.RRRR lub wpisz 0, " +
+                            "żeby zakończyć wyszukiwanie elementów: ");
+
+                    input = scanner.nextLine();
+                    if (input.equals("0"))
+                    {
+                        break;
+                    }
+                    Date d = Date.createDate(input);
+                    System.out.println(events.getOrDefault(d,
+                            "Nie ma wydarzenia odpowiadającego podanej dacie."));
+
+                }
+                catch (Exception e)
+                {
+                    System.out.println("Wystąpił nieoczekiwany problem.\n" + e.getMessage());
+                }
+
+            }
+        }
+        else
+        {
+            System.out.println("\nWyszukiwanie daty znajdującej się w kolekcji: 20.10.2021.");
+            System.out.println(events.get(new Date(20, 10, 2021)));
+            System.out.println("\nWyszukiwanie daty niebędącej w kolekcji: 24.12.2023.");
+            System.out.println(events.getOrDefault(new Date(24, 12, 2021),
+                    "Nie ma wydarzenia odpowiadającego podanej dacie."));
+
+        }
+
+        System.out.println("");
 
     }
 }
