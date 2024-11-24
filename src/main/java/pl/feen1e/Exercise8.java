@@ -96,6 +96,10 @@ public class Exercise8
                         break;
                     }
                     Date d = Date.createDate(input);
+                    if (d == null)
+                    {
+                        continue;
+                    }
                     System.out.println(events.getOrDefault(d,
                             "Nie ma wydarzenia odpowiadającego podanej dacie."));
 
@@ -117,7 +121,14 @@ public class Exercise8
 
         }
 
-        System.out.println("");
+        System.out.println("""
+                
+                W przypadku dodania dwóch wydarzeń o takiej samej dacie, drugie wydarzenie
+                zastępuje pierwsze. Dzieje się tak, ponieważ HashMap, w przeciwieństwie do HashSet,
+                aktualizuje wartość dla istniejącego klucza zamiast go pomijać. Przy wywołaniu
+                metody .put(key, value), HashMap używa metod .hashCode() i .equals() do sprawdzenia,
+                czy klucz już istnieje w mapie. Jeśli klucz jest obecny, jego wartość zostaje
+                zastąpiona nową, a jeśli klucza nie ma, para klucz-wartość jest dodawana do mapy.""");
 
     }
 }
