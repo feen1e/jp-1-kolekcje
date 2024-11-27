@@ -9,6 +9,7 @@ import java.util.Scanner;
  * Stwórz hashset i dodaj kilku użytkowników o tym samym numerze ID oraz kilku różnych. Przeanalizuj wynik.
  */
 
+// Klasa reprezentująca użytkownika na potrzeby zadania 4
 import java.util.Objects;
 
 public class User
@@ -32,6 +33,7 @@ public class User
                 ID: %d%n%n""", name, email, ID);
     }
 
+    // Tworzenie użytkownika z danych wejściowych
     public static User createUserFromInput()
     {
         try
@@ -59,6 +61,7 @@ public class User
         return null;
     }
 
+    // Te metody equals() i hashCode() zapewniają że użytkownicy są porównywani tylko na podstawie ID
     @Override
     public boolean equals(Object o)
     {

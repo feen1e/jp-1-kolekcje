@@ -1,5 +1,6 @@
 package pl.feen1e;
 
+// Klasa zawierająca wszystkie stałe pola
 public class Constants
 {
     public final static String AUTHOR = "Autor: Dominik Kaczmarek 281007";
@@ -15,7 +16,7 @@ public class Constants
     public final static String CHOOSE_ADDING_METHOD = """
             *-----------------------------------------------------------*
             Wybierz metodę wprowadzania danych:
-            1 - Wprowadzanie automatyczne
+            1 - Wprowadzanie automatyczne - domyślne
             (Nie wymaga wprowadzania danych, używa gotowych przykładów)
             2 - Wprowadzanie ręczne
             (Wymaga ręcznego wprowadzenia każdego elementu kolekcji)

@@ -15,10 +15,12 @@ public class Main
 {
     public static void main(String[] args)
     {
+        // Uruchomienie głównej pętli aplikacji
         Main main = new Main();
         main.mainLoop();
     }
 
+    // Główna pętla aplikacji
     private void mainLoop()
     {
         System.out.println(AUTHOR);
@@ -77,21 +79,22 @@ public class Main
         }
     }
 
+    // Metoda pozwalająca na wybranie przez użytkownika wpisywania automatycznego lub manualnego do kolekcji
     private static int chooseAddingMethod(Scanner scanner)
     {
         System.out.println(CHOOSE_ADDING_METHOD);
-        int adding_method = -1;
-        while (adding_method == -1)
+        int addingMethod = -1;
+        while (addingMethod == -1)
         {
             try
             {
-                adding_method = Integer.parseInt(scanner.nextLine());
+                addingMethod = Integer.parseInt(scanner.nextLine());
             }
             catch (NumberFormatException e)
             {
                 System.out.println(NON_NUMBER_INPUT);
             }
         }
-        return adding_method;
+        return addingMethod;
     }
 }

@@ -11,20 +11,23 @@ import static pl.feen1e.Constants.AUTO_ADD;
 import static pl.feen1e.Constants.COLLECTION_ITEMS;
 import static pl.feen1e.Constants.MANUAL_ADD;
 
+/*
+ * Stwórz klasę reprezentującą produkt z polami, takimi jak nazwa i cena.
+ * Zaimplementuj interfejs Comparable, aby produkty były porównywane na podstawie nazwy.
+ * Stwórz listę produktów i posortuj ją za pomocą Collections.sort(). Następnie wyświetl posortowaną listę.
+ * Zmodyfikuj zadanie, aby tym razem użyć własnego komparatora do sortowania produktów według ceny.
+ * Wyświetl wynik i porównaj go z poprzednim.
+ */
+
+// Klasa odpowiadająca za zadanie 7
 public class Exercise7
 {
     public static void ex7ArrayList(String method)
     {
-        /*
-        Stwórz klasę reprezentującą produkt z polami, takimi jak nazwa i cena.
-        Zaimplementuj interfejs Comparable, aby produkty były porównywane na podstawie nazwy.
-        Stwórz listę produktów i posortuj ją za pomocą Collections.sort(). Następnie wyświetl posortowaną listę.
-        Zmodyfikuj zadanie, aby tym razem użyć własnego komparatora do sortowania produktów według ceny.
-        Wyświetl wynik i porównaj go z poprzednim.
-         */
-
         ArrayList<Product> products = new ArrayList<>();
 
+        // Ta część odpowiada za dodawanie kolejnych elementów do listy: kiedy metoda wpisywania równa się 2,
+        // użytkownik jest proszony o wpisywanie ręczne; w przeciwnym wypadku elementy dodawane są automatycznie
         if (Objects.equals(method, "2"))
         {
             System.out.println(MANUAL_ADD);
@@ -73,22 +76,27 @@ public class Exercise7
             }
         }
         System.out.println(ADDING_FINISHED);
-        Collections.sort(products);
+
+        Collections.sort(products); // Sortowanie alfabetyczne
         System.out.println("Produkty zostały posortowane alfabetycznie.");
+        // Wypisanie elementów listy
         System.out.println(COLLECTION_ITEMS);
         for (Product p : products)
         {
             p.print();
         }
+        // Sortowanie po cenie i po nazwie, gdy cena jest taka sama
         Collections.sort(products, Comparator.comparingDouble(Product::getPrice).thenComparing(Product::getName));
         System.out.println("Następnie posortowano je według ceny (oraz nazwy, gdy produkty mają taką samą cenę), " +
                 "używając własnego komparatora.");
+        // Ponowne wypisanie elementów kolekcji
         System.out.println(COLLECTION_ITEMS);
         for (Product p : products)
         {
             p.print();
         }
 
+        // Wyjaśnienie / wnioski
         System.out.println("""
                 Sortowanie bez użycia własnego komparatora, czyli Collections.sort(products) wymaga
                 zaimplementowania w klasie porównywanych obiektów interfejsu Comparable i zdefiniowaniu

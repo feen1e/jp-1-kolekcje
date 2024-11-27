@@ -9,19 +9,22 @@ import static pl.feen1e.Constants.AUTO_ADD;
 import static pl.feen1e.Constants.COLLECTION_ITEMS;
 import static pl.feen1e.Constants.MANUAL_ADD;
 
+/*
+ * Zaimplementuj klasę reprezentującą użytkownika z polami takimi jak:
+ * nazwa użytkownika, adres e-mail i numer ID.
+ * Napisz metody equals() i hashCode(), aby porównywały użytkowników na podstawie numeru ID.
+ * Stwórz hashset i dodaj kilku użytkowników o tym samym numerze ID oraz kilku różnych. Przeanalizuj wynik.
+ */
+
+// Klasa odpowiadająca za zadanie 4
 public class Exercise4
 {
     public static void ex4HashSet(String method)
     {
-        /*
-         * Zaimplementuj klasę reprezentującą użytkownika z polami takimi jak:
-         * nazwa użytkownika, adres e-mail i numer ID.
-         * Napisz metody equals() i hashCode(), aby porównywały użytkowników na podstawie numeru ID.
-         * Stwórz hashset i dodaj kilku użytkowników o tym samym numerze ID oraz kilku różnych. Przeanalizuj wynik.
-         */
-
         HashSet<User> users = new HashSet<>();
 
+        // Ta część odpowiada za dodawanie kolejnych elementów do setu: kiedy metoda wpisywania równa się 2,
+        // użytkownik jest proszony o wpisywanie ręczne; w przeciwnym wypadku elementy dodawane są automatycznie
         if (Objects.equals(method, "2"))
         {
             System.out.println(MANUAL_ADD);
@@ -70,11 +73,14 @@ public class Exercise4
             System.out.println("Proszę zwrócić uwagę na to, że użytkownik 4 ma taki sam numer ID jak użytkownik 1.");
         }
         System.out.println(ADDING_FINISHED);
+        // Wypisanie elementów kolekcji
         System.out.println(COLLECTION_ITEMS);
         for (User u : users)
         {
             u.print();
         }
+
+        // Wyjaśnienie / wnioski
         System.out.println("""
                 W przypadku dodania dwóch użytkowników o takim samym numerze ID, ten drugi nie jest dodawany,
                 ponieważ zmodyfikowane metody .hashCode() i .equals() w klasie User sprawdzają tylko numery ID.

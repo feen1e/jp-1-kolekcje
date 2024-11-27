@@ -9,6 +9,8 @@ import java.util.Scanner;
  * Zmodyfikuj zadanie, aby tym razem użyć własnego komparatora do sortowania produktów według ceny.
  * Wyświetl wynik i porównaj go z poprzednim.
  */
+
+// Klasa reprezentująca produkt na potrzeby zadania 7
 public class Product implements Comparable<Product>
 {
     private String name;
@@ -37,6 +39,7 @@ public class Product implements Comparable<Product>
                 Price: %.2f zł%n%n""", name, price);
     }
 
+    // Tworzenie produktu z danych wejściowych
     public static Product createProductFromInput()
     {
         try
@@ -61,6 +64,7 @@ public class Product implements Comparable<Product>
         return null;
     }
 
+    // Metoda compareTo() dzięki której .sort() wie w jaki sposób sortować produkty
     @Override
     public int compareTo(Product other)
     {
