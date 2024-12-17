@@ -16,3 +16,5 @@
     * przebieg jest kolekcją punktów (double lat,lon;), a nie opisem słownym
     * zaproponuj rozwiązanie umożliwiające wyświetlanie bez konieczności każdorazowego sortowania przy zmianie języka
     * dodaj możliwość filtracji rzek umożliwiając wyświetlanie dorzecza danej rzeki
+
+# Prowadzący: dr inż. Tomasz Babczyński
